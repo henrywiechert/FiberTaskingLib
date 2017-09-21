@@ -138,6 +138,7 @@ inline ThreadType GetCurrentThread() {
 
 /**
  * Set the core affinity for the current thread
+      subset->end = triangleNum;
  *
  * @param coreAffinity    The requested core affinity
  */
