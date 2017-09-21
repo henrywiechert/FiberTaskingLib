@@ -138,6 +138,7 @@ inline ThreadType GetCurrentThread() {
 
 /**
  * Set the core affinity for the current thread
+      subset->end = triangleNum;
  *
  * @param coreAffinity    The requested core affinity
  */
@@ -232,7 +233,7 @@ inline bool CreateThread(uint stackSize, ThreadStartRoutine startRoutine, void *
 	// Set stack size
 	pthread_attr_setstacksize(&threadAttr, stackSize);
 
-	int success = pthread_create(returnThread, NULL, startRoutine, arg);
+	int success = pthread_create(returnThread, &threadAttr, startRoutine, arg);
 
 	// Cleanup
 	pthread_attr_destroy(&threadAttr);
@@ -267,7 +268,7 @@ inline bool CreateThread(uint stackSize, ThreadStartRoutine startRoutine, void *
 		pthread_attr_setaffinity_np(&threadAttr, sizeof(cpu_set_t), &cpuSet);
 	#endif
 
-	int success = pthread_create(returnThread, NULL, startRoutine, arg);
+	int success = pthread_create(returnThread, &threadAttr, startRoutine, arg);
 
 	// Cleanup
 	pthread_attr_destroy(&threadAttr);
