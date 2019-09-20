@@ -231,7 +231,7 @@ inline bool CreateThread(uint const stackSize, ThreadStartRoutine const startRou
 	// Set stack size
 	pthread_attr_setstacksize(&threadAttr, stackSize);
 
-	int success = pthread_create(returnThread, &threadAttr, startRoutine, arg);
+	int success = pthread_create(returnThread, NULL, startRoutine, arg);
 
 	// Cleanup
 	pthread_attr_destroy(&threadAttr);
@@ -269,7 +269,7 @@ inline bool CreateThread(uint const stackSize, ThreadStartRoutine const startRou
 	(void)coreAffinity;
 #	endif
 
-	int success = pthread_create(returnThread, &threadAttr, startRoutine, arg);
+	int success = pthread_create(returnThread, NULL, startRoutine, arg);
 
 	// Cleanup
 	pthread_attr_destroy(&threadAttr);
